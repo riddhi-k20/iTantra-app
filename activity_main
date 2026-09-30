@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#070B12"
+    android:keepScreenOn="true"
+    android:padding="10dp">
+
+    <!-- Top Bar: Tactical Header & Theme Selector -->
+    <LinearLayout
+        android:id="@+id/topBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#0E1626"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvAppTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="monospace"
+            android:text="TACTICAL PTT • OFFLINE MESH"
+            android:textColor="#00FFA3"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:background="#1B283D"
+            android:paddingHorizontal="6dp" />
+
+        <ImageButton
+            android:id="@+id/btnEmergencyContacts"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="6dp"
+            android:background="#1B283D"
+            android:contentDescription="Contacts"
+            android:src="@android:drawable/ic_menu_agenda"
+            app:tint="#00FFA3" />
+    </LinearLayout>
+
+    <!-- Settings Bar: 10 Indian Languages & Channel Selectors -->
+    <LinearLayout
+        android:id="@+id/configBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:background="#111B2B"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBarLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="LANG:"
+            android:textColor="#88A0C0"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerLanguage"
+            android:layout_width="0dp"
+            android:layout_height="34dp"
+            android:layout_weight="1"
+            android:background="#1A263A" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:fontFamily="monospace"
+            android:text="CH:"
+            android:textColor="#88A0C0"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spinnerChannel"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:background="#1A263A" />
+
+        <ImageButton
+            android:id="@+id/btnCameraSnap"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="6dp"
+            android:background="#1A263A"
+            android:contentDescription="Camera Attach"
+            android:src="@android:drawable/ic_menu_camera"
+            app:tint="#00E5FF" />
+    </LinearLayout>
+
+    <!-- Mesh Network Node Map View & Discovered Devices -->
+    <LinearLayout
+        android:id="@+id/meshContainerLayout"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="6dp"
+        android:background="#090F1A"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/configBarLayout">
+
+        <com.tactical.walkietalkie.MeshNodeMapView
+            android:id="@+id/meshNodeMapView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.2"
+            android:background="#050912" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvP2pDevices"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_weight="0.8"
+            android:background="#0A111E" />
+    </LinearLayout>
+
+    <!-- 4-Button Tactical SOS Emergency Grid Overlay -->
+    <GridLayout
+        android:id="@+id/sosGridLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:columnCount="4"
+        android:rowCount="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/meshContainerLayout">
+
+        <Button
+            android:id="@+id/btnSosFire"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="2dp"
+            android:backgroundTint="#D32F2F"
+            android:fontFamily="monospace"
+            android:text="FIRE"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnSosFlood"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="2dp"
+            android:backgroundTint="#1976D2"
+            android:fontFamily="monospace"
+            android:text="FLOOD"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnSosMedical"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="2dp"
+            android:backgroundTint="#388E3C"
+            android:fontFamily="monospace"
+            android:text="MEDIC"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnSosCollapse"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="2dp"
+            android:backgroundTint="#F57C00"
+            android:fontFamily="monospace"
+            android:text="COLLAPSE"
+            android:textColor="#FFFFFF"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+    </GridLayout>
+
+    <!-- Center Interactive Waveform Canvas Component -->
+    <com.tactical.walkietalkie.WaveformCanvasView
+        android:id="@+id/waveformCanvasView"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="4dp"
+        android:background="#060A14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sosGridLayout" />
+
+    <!-- Center Push-To-Talk Control Frame -->
+    <FrameLayout
+        android:id="@+id/pttContainerFrame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/consoleCardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/waveformCanvasView">
+
+        <View
+            android:id="@+id/viewPttRingPulse"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            android:alpha="0"
+            android:background="@android:drawable/presence_online" />
+
+        <Button
+            android:id="@+id/btnPushToTalk"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:backgroundTint="#00E5FF"
+            android:elevation="10dp"
+            android:fontFamily="monospace"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="PTT\nHOLD"
+            android:textColor="#050C16"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <!-- Black Monospace Dynamic Metric & Log Console View -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/consoleCardView"
+        android:layout_width="0dp"
+        android:layout_height="160dp"
+        app:cardBackgroundColor="#000000"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Console Header Bar with Live Metric Badges -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#0A0F1D"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp">
+
+                <TextView
+                    android:id="@+id/tvMetricRam"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="monospace"
+                    android:text="RAM: -- MB"
+                    android:textColor="#00E5FF"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tvMetricLatency"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="monospace"
+                    android:text="SOCK: -- ms"
+                    android:textColor="#FFD600"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tvMetricRtf"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="monospace"
+                    android:text="RTF: --"
+                    android:textColor="#00FFA3"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <ScrollView
+                android:id="@+id/consoleScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:padding="6dp">
+
+                <TextView
+                    android:id="@+id/tvConsoleLogs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:lineSpacingExtra="2dp"
+                    android:text="[SYSTEM] Tactical Node Initialized. Offline Mesh Ready.\n"
+                    android:textColor="#00FF66"
+                    android:textIsSelectable="true"
+                    android:textSize="10.5sp" />
+            </ScrollView>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
